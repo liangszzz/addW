@@ -1,8 +1,21 @@
 // background.js
 
-let color = '#3aa757';
 
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.storage.sync.set({ color });
-  console.log('Default background color set to %cgreen', `color: ${color}`);
+
+  chrome.contextMenus.create(
+    {
+      id: 'add_word',
+      title: 'add_word',
+      contexts:['selection']
+    }
+
+  );
+  console.log('Context');
+});
+
+chrome.contextMenus.onClicked.addListener((e) => {
+  if(e.menuItemId==='add_word'){
+    console.log("click",e.selectionText)
+  }
 });
