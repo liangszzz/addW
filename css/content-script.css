@@ -1,0 +1,18 @@
+
+.translate_panel {
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid;
+    z-index: 999;
+    opacity: 0;
+    background-color: #9c7e7e;
+    transform: scale(0.4);
+    position: absolute;
+}
+
+.show {
+    transform: scale(1);
+    opacity: 1;
+}
