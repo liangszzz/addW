@@ -17,7 +17,7 @@ class Panel {
     }
 
     showPanel(json, x, y) {
-        console.log('showPanel',json, x, y)
+        console.log('showPanel', json, x, y)
         this.panel.classList.add("show")
         this.panel.style.left = x + "px";
         this.panel.style.top = y + "px";
@@ -28,19 +28,6 @@ let panel = new Panel();
 panel.createPanel()
 
 chrome.runtime.onMessage.addListener((request, sender, callBack) => {
-    chrome.storage.sync.get("position", ({position}) => {
-        panel.showPanel(request, position.x, position.y)
-    })
+    panel.showPanel(request, document.documentElement.clientWidth / 2, document.documentElement.clientHeight / 2)
     return true;
-})
-
-document.addEventListener('mouseup', function (mousePos) {
-    if (mousePos.button === 2) {
-        chrome.storage.sync.set({
-            position: {
-                x: mousePos.clientX,
-                y: mousePos.clientY
-            }
-        })
-    }
 })
